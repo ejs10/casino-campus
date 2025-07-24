@@ -63,7 +63,8 @@ public class Deck {
     //    - 초기화 블록은 { }로 감싸진 코드 영역입니다
     //    - 클래스 내부에 필드 선언 아래에 작성합니다
     //    - 예: { /* 여기에 초기화 코드 작성 */ }
-    // 
+    //
+
     // 2. 52장의 카드를 생성하는 로직
     //    - 바깥 반복문: Suit.values()로 모든 무늬 순회 (SPADES, HEARTS, DIAMONDS, CLUBS)
     //    - 안쪽 반복문: Rank.values()로 모든 랭크 순회 (TWO부터 ACE까지)
@@ -81,6 +82,16 @@ public class Deck {
     // - NullPointerException: Card 생성자에 null을 전달했습니다
     
     private final List<Card> cards = new ArrayList<>();
+
+    {
+        // 인스턴스 초기화 블록에서 52장의 카드를 생성합니다
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+                cards.add(new Card(suit, rank));
+            }
+        }
+    }
+
     
     /**
      * 덱을 섞습니다.
@@ -92,35 +103,15 @@ public class Deck {
      * 새로운 덱은 사용 전에 반드시 섞어야 합니다.
      */
     public void shuffle() {
-        // TODO: 구현하세요
-        // 
-        // 🎯 구현 순서:
-        // 1. 필요한 클래스 import
-        //    - java.util.Collections 클래스가 필요합니다
-        //    - 이미 import되어 있다면 그대로 사용하면 됩니다
-        // 
-        // 2. Collections 클래스의 메서드 활용
-        //    - Collections 클래스에는 리스트를 섞는 static 메서드가 있습니다
-        //    - 메서드 이름은 shuffle입니다
-        //    - 호출 형태: Collections.shuffle(리스트)
-        // 
-        // 3. 인자 전달
-        //    - 이 클래스의 cards 필드를 인자로 전달합니다
-        //    - shuffle 메서드는 전달받은 리스트를 직접 수정합니다
-        // 
-        // 테스트 실패 시 확인사항:
-        // - "카드 순서가 변경되지 않았습니다" 에러: Collections.shuffle()을 호출하지 않았습니다
-        // - "카드 수가 변경되었습니다" 에러: 다른 메서드를 사용했거나 추가 로직을 넣었습니다
-        
-        throw new UnsupportedOperationException("shuffle() 메서드가 아직 구현되지 않았습니다");
+        java.util.Collections.shuffle(cards);
     }
-    
+
     /**
      * 덱에서 카드를 한 장 뽑습니다.
-     * 
+     *
      * 덱의 맨 위에서 카드를 한 장 뽑아 반환합니다.
      * 뽑은 카드는 덱에서 제거됩니다.
-     * 
+     *
      * @return 뽑은 카드
      * @throws IllegalStateException 덱이 비어있을 때
      */
@@ -137,8 +128,16 @@ public class Deck {
         // - "덱이 비어있습니다" 에러: isEmpty() 체크를 하지 않았습니다
         // - "카드가 제거되지 않았습니다" 에러: remove() 메서드를 호출하지 않았습니다
         // - IndexOutOfBoundsException: 빈 리스트에서 카드를 뽑으려고 했습니다
-        
-        throw new UnsupportedOperationException("drawCard() 메서드가 아직 구현되지 않았습니다");
+
+
+        if (isEmpty()){
+            throw new IllegalStateException("덱이 비어있습니다");
+
+        }
+        return cards.remove(0);
+
+
+
     }
     
     /**
@@ -156,7 +155,7 @@ public class Deck {
         // 테스트 실패 시 확인사항:
         // - "덱이 비어있지 않은데 true를 반환했습니다" 에러: 조건을 반대로 구현했습니다
         // - "덱이 비어있는데 false를 반환했습니다" 에러: isEmpty() 로직이 잘못되었습니다
-        
-        throw new UnsupportedOperationException("isEmpty() 메서드가 아직 구현되지 않았습니다");
+
+        return cards.isEmpty();
     }
 }

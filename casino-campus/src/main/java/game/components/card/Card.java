@@ -143,17 +143,6 @@ public class Card implements Comparable<Card> {
      */
     @Override
     public String toString() {
-        // TODO: 구현하세요
-        // 
-        // 구현 힌트:
-        // 1. 이 카드의 rank와 suit 필드를 활용하세요
-        // 2. Rank enum과 Suit enum을 살펴보면 getSymbol() 메서드가 있습니다
-        // 3. 두 심볼을 적절히 조합하여 문자열을 만드세요
-        // 4. 순서는 랭크 심볼이 먼저, 무늬 기호가 나중입니다
-        // 
-        // 테스트 실패 시 확인사항:
-        // - "A와 ♠가 포함되어야 함" 에러: 심볼을 올바르게 가져오지 못했거나 순서가 잘못되었습니다
-        // - "10과 ♥가 포함되어야 함" 에러: 두 자리 숫자도 올바르게 처리해야 합니다
 
         return rank.getSymbol() + suit.getSymbol() ;
     }
@@ -185,8 +174,14 @@ public class Card implements Comparable<Card> {
         // - "null과 비교할 때는 false를 반환해야 합니다" 에러: null 체크를 하지 않았습니다
         // - "다른 타입과 비교할 때는 false를 반환해야 합니다" 에러: instanceof 체크를 하지 않았습니다
         // - "같은 무늬와 랭크를 가진 카드는 true를 반환해야 합니다" 에러: 필드 비교가 잘못되었습니다
+
+        if(obj == null) return false;
+        if(this == obj) return true;
+        if(!(obj instanceof Card)) return false;
+        Card other = (Card) obj;
+        return this.suit == other.suit && this.rank == other.rank;
+
         
-        throw new UnsupportedOperationException("equals() 메서드가 아직 구현되지 않았습니다");
     }
     
     /**
@@ -202,17 +197,8 @@ public class Card implements Comparable<Card> {
      */
     @Override
     public int hashCode() {
-        // TODO: 구현하세요
-        // 
-        // 구현 힌트:
-        // 1. suit과 rank 필드를 모두 사용해야 합니다
-        // 2. java.util.Objects 클래스의 hash() 메서드를 활용하면 편리합니다
-        // 3. 또는 직접 계산할 수도 있습니다 (예: 31 * suit.hashCode() + rank.hashCode())
-        // 
-        // 테스트 실패 시 확인사항:
-        // - "equals()가 true인 객체들은 같은 hashCode를 가져야 합니다" 에러: 
-        //   equals()에서 사용한 필드와 동일한 필드를 사용하지 않았습니다
         
-        throw new UnsupportedOperationException("hashCode() 메서드가 아직 구현되지 않았습니다");
+        return 31 * suit.hashCode() + rank.hashCode();
+
     }
 }
