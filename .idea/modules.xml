@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/casino-campus.iml" filepath="$PROJECT_DIR$/.idea/modules/casino-campus.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/casino-campus.main.iml" filepath="$PROJECT_DIR$/.idea/modules/casino-campus.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/casino-campus.test.iml" filepath="$PROJECT_DIR$/.idea/modules/casino-campus.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.casino.campus.casino-campus.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.casino.campus.casino-campus.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.casino.campus.casino-campus.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.casino.campus.casino-campus.test.iml" />
     </modules>
   </component>
 </project>

@@ -103,8 +103,8 @@ public class Card implements Comparable<Card> {
         // 테스트 실패 시 확인사항:
         // - "getValue()는 2를 반환해야 합니다" 에러: rank의 getValue() 메서드를 호출하지 않았습니다
         // - NullPointerException 에러: rank 필드를 사용하지 않고 다른 것을 사용했습니다
-        
-        throw new UnsupportedOperationException("getValue() 메서드가 아직 구현되지 않았습니다");
+
+        return this.rank.getValue();
     }
 
     @Override
@@ -123,8 +123,11 @@ public class Card implements Comparable<Card> {
         // - "ACE가 KING보다 큰 값을 반환해야 합니다" 에러: Rank 비교가 잘못되었습니다
         // - "스페이드 ACE는 하트 ACE보다 작아야 합니다" 에러: 같은 Rank일 때 Suit 비교를 하지 않았습니다
         // - "완전히 같은 카드는 0을 반환해야 합니다" 에러: 같은 카드 처리가 잘못되었습니다
-        
-        throw new UnsupportedOperationException("compareTo() 메서드가 아직 구현되지 않았습니다");
+
+        if(this.rank.compareTo(other.getRank())==0 ){
+            return this.suit.compareTo(other.getSuit());
+        }
+        return this.rank.compareTo(other.getRank());
     }
     
     /**
@@ -151,8 +154,8 @@ public class Card implements Comparable<Card> {
         // 테스트 실패 시 확인사항:
         // - "A와 ♠가 포함되어야 함" 에러: 심볼을 올바르게 가져오지 못했거나 순서가 잘못되었습니다
         // - "10과 ♥가 포함되어야 함" 에러: 두 자리 숫자도 올바르게 처리해야 합니다
-        
-        throw new UnsupportedOperationException("toString() 메서드가 아직 구현되지 않았습니다");
+
+        return rank.getSymbol() + suit.getSymbol() ;
     }
     
     /**
