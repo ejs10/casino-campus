@@ -1,5 +1,7 @@
 <project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/casino-answer" />
     <file type="web" url="file://$PROJECT_DIR$/casino-campus" />
     <file type="web" url="file://$PROJECT_DIR$/testetaet" />
   </component>

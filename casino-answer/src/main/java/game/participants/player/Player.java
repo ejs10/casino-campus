@@ -66,12 +66,10 @@ public class Player {
      * @param amount 추가할 금액
      */
     public void addMoney(int amount) {
-        // TODO: 구현하세요
-        // 힌트:
-        // 1. amount가 음수인지 체크
-        // 2. 음수면 IllegalArgumentException 던지기
-        // 3. 양수면 money에 추가
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (amount < 0) {
+            throw new IllegalArgumentException("금액은 음수일 수 없습니다.");
+        }
+        money += amount;
     }
     
     /**
@@ -81,13 +79,14 @@ public class Player {
      * @return 차감 성공 여부 (잔액 부족시 false)
      */
     public boolean removeMoney(int amount) {
-        // TODO: 구현하세요
-        // 힌트:
-        // 1. amount가 음수인지 체크 (음수면 false)
-        // 2. money >= amount인지 체크
-        // 3. 충분하면 차감하고 true 반환
-        // 4. 부족하면 false 반환
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (amount < 0) {
+            return false;
+        }
+        if (money >= amount) {
+            money -= amount;
+            return true;
+        }
+        return false;
     }
     
     /**
