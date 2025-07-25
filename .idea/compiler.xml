@@ -2,9 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="casino-campus" target="21" />
-      <module name="casino-campus.main" target="21" />
-      <module name="casino-campus.test" target="21" />
+      <module name="com.casino.campus.casino-campus.main~1" target="21" />
+      <module name="com.casino.campus.casino-campus.test~1" target="21" />
       <module name="testetaet" target="21" />
       <module name="testetaet.main" target="21" />
       <module name="testetaet.test" target="21" />

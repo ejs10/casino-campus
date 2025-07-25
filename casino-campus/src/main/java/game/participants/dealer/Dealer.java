@@ -3,6 +3,7 @@ package game.participants.dealer;
 import game.components.deck.Deck;
 import game.participants.player.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,7 +42,13 @@ public class Dealer {
         // 힌트:
         // 1. deck.reset()으로 덱 초기화
         // 2. deck.shuffle()로 카드 섞기
-        throw new UnsupportedOperationException("Not implemented yet");
+
+
+        this.deck = new Deck();
+
+        deck.shuffle();
+
+
     }
     
     /**
@@ -56,7 +63,13 @@ public class Dealer {
         // 2. 각 플레이어에게 CARDS_PER_PLAYER장씩 분배
         // 3. deck.drawCard()를 사용하여 카드를 뽑고
         // 4. player.getHand().addCard()로 추가
-        throw new UnsupportedOperationException("Not implemented yet");
+
+        for(Player player : players) {
+            player.getHand().clear();
+            for (int i = 0; i < CARDS_PER_PLAYER; i++) {
+                player.getHand().add(deck.drawCard());
+            }
+        }
     }
     
     /**
@@ -73,7 +86,22 @@ public class Dealer {
         // 3. 각 플레이어의 hand.evaluateHand()로 핸드 순위 확인
         // 4. 가장 높은 점수를 가진 플레이어들을 winners에 추가
         // 5. 동점자가 있을 수 있음을 고려
-        throw new UnsupportedOperationException("Not implemented yet");
+
+        List<Player> winners = new ArrayList<>();
+        int highestScore = Integer.MIN_VALUE;
+
+        for(Player player : players){
+            int score = player.getHand().evaluate().getScore();
+            if (score > highestScore) {
+                winners.clear();
+                winners.add(player);
+                highestScore = score;
+
+            } else if (score == highestScore) {
+                winners.add(player); // 동점이면 승자 목록에 추가
+            }
+        }
+        return winners;
     }
     
     /**
@@ -87,7 +115,10 @@ public class Dealer {
         // 힌트:
         // 1. 각 승자에게 prizeAmount만큼 돈 추가
         // 2. winner.addMoney(prizeAmount) 사용
-        throw new UnsupportedOperationException("Not implemented yet");
+        for (Player winner : winners){
+            winner.addMoney(prizeAmount);
+        }
+
     }
     
     /**
@@ -116,6 +147,30 @@ public class Dealer {
         //        - 패자들: loser.recordLose()
         //        - 동점자가 여러명이면: 모두 recordDraw()
         // }
-        throw new UnsupportedOperationException("Not implemented yet");
+
+        for (int round = 1; round <= round; round++){
+            startNewGame();
+            dealCards(players);
+            List<? extends Player> winners = determineWinners(players);
+            distributePrize(winners, PRIZE_PER_ROUND);
+
+            if(winners.size() == 1){
+                Player winner = winners.get(0);
+                winner.recordWin();
+                for (Player player : players){
+                    if (!winners.contains(player)){
+                        player.recordLose();
+                    }
+                }
+            }else {
+                for (Player player : players){
+                    if(winners.contains(player)){
+                        player.recordDraw();
+                    }else {
+                        player.recordLose();
+                    }
+                }
+            }
+        }
     }
 }
