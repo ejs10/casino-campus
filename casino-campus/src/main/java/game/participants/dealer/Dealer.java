@@ -148,13 +148,13 @@ public class Dealer {
         //        - 동점자가 여러명이면: 모두 recordDraw()
         // }
 
-        for (int round = 1; round <= round; round++){
+        for (int round = 1; round <= rounds; round++){
             startNewGame();
             dealCards(players);
             List<? extends Player> winners = determineWinners(players);
-            distributePrize(winners, PRIZE_PER_ROUND);
 
             if(winners.size() == 1){
+                distributePrize(winners, PRIZE_PER_ROUND);
                 Player winner = winners.get(0);
                 winner.recordWin();
                 for (Player player : players){
